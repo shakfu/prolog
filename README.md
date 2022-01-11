@@ -12,3 +12,4 @@ Early stage. Just project skeleton now.
 ## TODO
 
 - [x] integrate pybindl11 from the start
+- [x] cmake-based build

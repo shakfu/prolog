@@ -1,8 +1,30 @@
+# ----------------------------------------------------------------------------
+# module scoped variables
 
-add_library (core
-   STATIC
-   process.cpp
+set(core_src
+    process.cpp
+)
+
+# ----------------------------------------------------------------------------
+# module library
+
+add_library(core)
+
+target_sources(core
+    PRIVATE
+        ${core_src}
 )
 
 set_target_properties(core PROPERTIES 
-   ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/obj")
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/obj")
+
+
+# ----------------------------------------------------------------------------
+# consolidated application library
+
+target_sources(prolog-lib
+    PUBLIC
+        ${core_src}
+)
+
+target_include_directories(prolog-lib PUBLIC ${CMAKE_CURRENT_LIST_DIR})
