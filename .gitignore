@@ -1,4 +1,11 @@
+
+# General
+.DS_Store
+__pycache__
+*.pyc
+
 # Prerequisites
+build
 *.d
 
 # Compiled Object files
