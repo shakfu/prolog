@@ -31,6 +31,8 @@ target_link_libraries(prolog-exe
         sqlite3
         pthread
         dl
+        lua
+        m
 )
 
 # this works too
@@ -45,7 +47,7 @@ set_target_properties(prolog-exe PROPERTIES OUTPUT_NAME prolog)
 # python scripting plugin
 
 find_package(pybind11 REQUIRED)
-pybind11_add_module(prolog scripting.cpp)
+pybind11_add_module(prolog scripting_py.cpp)
 target_link_libraries(prolog
     PRIVATE
     core
