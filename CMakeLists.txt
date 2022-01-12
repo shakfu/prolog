@@ -12,5 +12,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG   ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/deb
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+# for thirdparty libraries
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/include)
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lib)
 
 add_subdirectory(src)

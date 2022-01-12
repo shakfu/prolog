@@ -11,6 +11,7 @@ set_target_properties(prolog-lib PROPERTIES
 
 add_subdirectory(core)
 add_subdirectory(model)
+add_subdirectory(db)
 
 # ----------------------------------------------------------------------------
 # program executable
@@ -22,8 +23,14 @@ set_target_properties(prolog-exe PROPERTIES
 
 target_link_libraries(prolog-exe
     PRIVATE
-    core
-    model
+        core
+        model
+        db
+    PUBLIC
+        SQLiteCpp
+        sqlite3
+        pthread
+        dl
 )
 
 # this works too

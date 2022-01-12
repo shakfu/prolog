@@ -1,4 +1,9 @@
-all:
+all: build
+
+
+.PHONY: build run clean
+	
+build:
 	@./scripts/build.sh
 
 run:
@@ -6,3 +11,4 @@ run:
 
 clean:
 	@rm -rf build
+	@rm -f demo.db3
