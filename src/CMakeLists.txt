@@ -60,3 +60,32 @@ target_link_libraries(prolog
 set_target_properties(prolog PROPERTIES 
    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 
+# ----------------------------------------------------------------------------
+# lua scripting plugin
+
+add_library(lua_prolog MODULE scripting_lua.cpp)
+target_compile_options(lua_prolog PRIVATE
+    -fPIC)
+target_link_libraries(lua_prolog
+    PRIVATE
+    core
+    model
+    PUBLIC
+    lua
+    m
+)
+
+# this works too
+# target_link_libraries(prolog PRIVATE prolog-lib)
+
+set_target_properties(lua_prolog PROPERTIES 
+   LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+
+set_target_properties(lua_prolog PROPERTIES 
+   LIBRARY_OUTPUT_NAME prolog)
+
+set_target_properties(lua_prolog PROPERTIES
+    PREFIX "")
+
+# set_target_properties(lua_prolog PROPERTIES OUTPUT_NAME prolog)
+
