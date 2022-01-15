@@ -33,6 +33,7 @@ target_link_libraries(prolog-exe
         dl
         lua
         m
+        cpp-terminal
 )
 
 # this works too
