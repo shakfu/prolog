@@ -1,8 +1,9 @@
 #include <iostream>
 
-#include <sol/sol.hpp>
-#include <cpp-terminal/base.hpp>
+#include "sol/sol.hpp"
+#include "cpp-terminal/base.hpp"
 #include "argh.h"
+#include "workflow/WFHttpServer.h"
 
 #include "core/process.hpp"
 #include "model/vehicle.hpp"
@@ -19,6 +20,13 @@ using Term::fg;
 using Term::style;
 using Term::Terminal;
 
+const string USAGE = 
+"prolog [options]\n\n"
+"options\n"
+"    -v              increase verbosity\n"
+"    -h --help       provide help\n"
+"    -d --demo       run demo\n"
+"    -s --server     run server\n";
 
 int main(int argc, char* argv[]) {
 
@@ -26,7 +34,7 @@ int main(int argc, char* argv[]) {
     cmdl.parse(argc, argv, argh::parser::PREFER_PARAM_FOR_UNREG_OPTION);
 
     if (cmdl["-v"])
-        cout << "Verbose, I am." << endl;
+        cout << "increase the verbosity." << endl;
 
     if (cmdl[{"-d", "--demo"}]) {
         std::string title = "Running " 
@@ -53,22 +61,36 @@ int main(int argc, char* argv[]) {
         // test main
         program::foo();
 
+    } else if (cmdl[{"-s", "--serve"}]) {
+        cout << "Running webserver on port 8888" << endl;
+        cout << "Press [Enter] to stop." << endl;
+
+        WFHttpServer server([](WFHttpTask *task) {
+            task->get_resp()->append_output_body("<html>Hello World!</html>");
+        });
+
+        if (server.start(8888) == 0) { // start server on port 8888
+            getchar(); // press "Enter" to end.
+            server.stop();
+        }
+
     } else {
-        cout << "Positional args:\n";
-        for (auto& pos_arg : cmdl)
-            cout << '\t' << pos_arg << endl;
+        cout << USAGE << endl;
+        // cout << "Positional args:\n";
+        // for (auto& pos_arg : cmdl)
+        //     cout << '\t' << pos_arg << endl;
 
-        cout << "Positional args:\n";
-        for (auto& pos_arg : cmdl.pos_args())
-            cout << '\t' << pos_arg << endl;
+        // cout << "Positional args:\n";
+        // for (auto& pos_arg : cmdl.pos_args())
+        //     cout << '\t' << pos_arg << endl;
 
-        cout << "\nFlags:\n";
-        for (auto& flag : cmdl.flags())
-            cout << '\t' << flag << endl;
+        // cout << "\nFlags:\n";
+        // for (auto& flag : cmdl.flags())
+        //     cout << '\t' << flag << endl;
 
-        cout << "\nParameters:\n";
-        for (auto& param : cmdl.params())
-            cout << '\t' << param.first << " : " << param.second << endl;        
+        // cout << "\nParameters:\n";
+        // for (auto& param : cmdl.params())
+        //     cout << '\t' << param.first << " : " << param.second << endl;
     }
 
     return EXIT_SUCCESS;

@@ -21,6 +21,16 @@ add_executable(prolog-exe program.cpp)
 set_target_properties(prolog-exe PROPERTIES 
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
+# target_include_directories(prolog-exe
+#     PRIVATE
+#         /usr/local/opt/openssl@1.1/include
+# )
+
+# target_link_directories(prolog-exe
+#     PRIVATE
+#         /usr/local/opt/openssl@1.1/lib
+# )
+
 target_link_libraries(prolog-exe
     PRIVATE
         core
@@ -34,6 +44,9 @@ target_link_libraries(prolog-exe
         lua
         m
         cpp-terminal
+        workflow
+        ssl
+        crypto
 )
 
 # this works too
