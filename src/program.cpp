@@ -2,7 +2,7 @@
 
 #include "sol/sol.hpp"
 #include "cpp-terminal/base.hpp"
-#include "argh.h"
+#include "args.hxx"
 #include "workflow/WFHttpServer.h"
 
 #include "core/process.hpp"
@@ -12,13 +12,6 @@
 
 #define SOL_ALL_SAFETIES_ON 1
 
-using Term::bg;
-using Term::color;
-using Term::color24_bg;
-using Term::color24_fg;
-using Term::fg;
-using Term::style;
-using Term::Terminal;
 
 const string USAGE = 
 "prolog [options]\n\n"
@@ -30,17 +23,36 @@ const string USAGE =
 
 int main(int argc, char* argv[]) {
 
-    argh::parser cmdl;
-    cmdl.parse(argc, argv, argh::parser::PREFER_PARAM_FOR_UNREG_OPTION);
-
-    if (cmdl["-v"])
-        cout << "increase the verbosity." << endl;
-
-    if (cmdl[{"-d", "--demo"}]) {
+    args::ArgumentParser parser("This the prolog main program.", "This goes after the options.");
+    args::Group group(parser, "This group is all exclusive:", args::Group::Validators::Xor);
+    args::Flag demo(group, "demo", "run demo", {'d', "demo"});
+    args::Flag server(group, "server", "run server", {'s', "server"});
+    try
+    {
+        parser.ParseCLI(argc, argv);
+    }
+    catch (args::Help)
+    {
+        std::cout << parser;
+        return 0;
+    }
+    catch (args::ParseError e)
+    {
+        std::cerr << e.what() << std::endl;
+        std::cerr << parser;
+        return 1;
+    }
+    catch (args::ValidationError e)
+    {
+        std::cerr << e.what() << std::endl;
+        std::cerr << parser;
+        return 1;
+    }
+    if (demo) {
         std::string title = "Running " 
-            + color(style::bold) 
+            + color(Term::style::bold) 
             + "Demo"
-            + color(style::reset)
+            + color(Term::style::reset)
             + ".\n"; 
         cout << title << endl;
 
@@ -60,8 +72,8 @@ int main(int argc, char* argv[]) {
         
         // test main
         program::foo();
-
-    } else if (cmdl[{"-s", "--serve"}]) {
+    }
+    if (server) {
         cout << "Running webserver on port 8888" << endl;
         cout << "Press [Enter] to stop." << endl;
 
@@ -74,26 +86,10 @@ int main(int argc, char* argv[]) {
             server.stop();
         }
 
-    } else {
-        cout << USAGE << endl;
-        // cout << "Positional args:\n";
-        // for (auto& pos_arg : cmdl)
-        //     cout << '\t' << pos_arg << endl;
-
-        // cout << "Positional args:\n";
-        // for (auto& pos_arg : cmdl.pos_args())
-        //     cout << '\t' << pos_arg << endl;
-
-        // cout << "\nFlags:\n";
-        // for (auto& flag : cmdl.flags())
-        //     cout << '\t' << flag << endl;
-
-        // cout << "\nParameters:\n";
-        // for (auto& param : cmdl.params())
-        //     cout << '\t' << param.first << " : " << param.second << endl;
     }
 
-    return EXIT_SUCCESS;
+    return 0;
+
 }
 
 

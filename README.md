@@ -23,7 +23,7 @@ The root `Makefile` is just for convenience.
 - [x] [pybindl11](https://github.com/pybind/pybind11) for python scripting
 - [x] [sqlite3](https://github.com/sqlite/sqlite) for persistence via [SQLiteCpp](https://github.com/SRombauts/SQLiteCpp)
 - [x] [sol2](https://github.com/ThePhD/sol2) for lua scripting (why not!!)
-- [x] [commandline](https://github.com/adishavit/argh) library
+- [x] [args](https://github.com/Taywee/args) library for command-line parsing.
 - [x] [cpp-terminal](https://github.com/jupyter-xeus/cpp-terminal) library
 - [x] [workflow](https://github.com/sogou/workflow)
 - [ ] [libpqxx](https://github.com/jtv/libpqxx)
