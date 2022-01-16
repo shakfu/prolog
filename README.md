@@ -28,15 +28,19 @@ The root `Makefile` is just for convenience.
 - [x] [workflow](https://github.com/sogou/workflow) engine for microservices
 - [x] [taskflow](https://github.com/taskflow/taskflow) task programming system
 - [x] [webview](https://github.com/webview/webview) web viewing library
-- [ ] [tomlplusplus](https://github.com/marzer/tomlplusplus) for configuration
+- [x] [tomlplusplus](https://github.com/marzer/tomlplusplus) for configuration
+- [x] [spdlog](https://github.com/gabime/spdlog) for logging
+- [x] [libzeromq](https://github.com/zeromq/libzmq) and [cppzmq]https://github.com/zeromq/cppzmq for messaging
+- [ ] [cpr](https://github.com/libcpr/cpr) for http requests
 - [ ] [indicators](https://github.com/p-ranav/indicators/) library
 - [ ] [libpqxx](https://github.com/jtv/libpqxx)
 - [ ] some algorithms from google [or-tools](https://developers.google.com/optimization).
-
+- [ ] [drogon](https://github.com/drogonframework/drogon) for web application
+- [ ] [kore](https://github.com/jorisvink/kore) for web application
+- [ ] [imgui](https://github.com/ocornut/imgui) for admin gui
 
 ## Research
 
 - crossplatform development options:
 	- [flutter](https://flutter.dev) cross-platform framework by google (dart)
-	- 
-- 
+	- [ultralight](https://ultralig.ht)

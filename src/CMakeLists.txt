@@ -48,6 +48,8 @@ target_link_libraries(prolog-exe
         ssl
         crypto
         "-framework WebKit"
+        spdlog
+        zmq
 )
 
 # this works too

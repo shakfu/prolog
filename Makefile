@@ -6,8 +6,12 @@ all: build
 build:
 	@./scripts/build.sh
 
-run:
-	@./build/debug/bin/prolog
+run: build
+	@./build/debug/bin/prolog -d
+
+format:
+	@find ./src/ -iname *.h -o -iname *.cpp | xargs clang-format -i
+	@find ./tests/ -iname *.h -o -iname *.cpp | xargs clang-format -i
 
 clean:
 	@rm -rf build

@@ -5,8 +5,8 @@
 
 namespace py = pybind11;
 
-
-PYBIND11_MODULE(prolog, m) {
+PYBIND11_MODULE(prolog, m)
+{
     py::class_<model::Vehicle>(m, "Vehicle")
         .def(py::init<>())
         .def_readwrite("brand", &model::Vehicle::brand)
