@@ -1,9 +1,11 @@
 #include <iostream>
 
-#include "sol/sol.hpp"
-#include "cpp-terminal/base.hpp"
-#include "args.hxx"
-#include "workflow/WFHttpServer.h"
+#include <sol/sol.hpp>
+#include <cpp-terminal/base.hpp>
+#include <args.hxx>
+#include <workflow/WFHttpServer.h>
+#include <taskflow/taskflow.hpp>
+#include <toml.hpp>
 
 #include "core/process.hpp"
 #include "model/vehicle.hpp"
@@ -12,20 +14,16 @@
 
 #define SOL_ALL_SAFETIES_ON 1
 
-
-const string USAGE = 
-"prolog [options]\n\n"
-"options\n"
-"    -v              increase verbosity\n"
-"    -h --help       provide help\n"
-"    -d --demo       run demo\n"
-"    -s --server     run server\n";
-
 int main(int argc, char* argv[]) {
+    // configuration
+    auto config = toml::parse_file("config.toml");
+    std::string_view library_name = config["version"].value_or("0.0.0");
+    cout << "Version: " << library_name << endl; 
 
     args::ArgumentParser parser("This the prolog main program.", "This goes after the options.");
     args::Group group(parser, "This group is all exclusive:", args::Group::Validators::Xor);
     args::Flag demo(group, "demo", "run demo", {'d', "demo"});
+    args::Flag task(group, "task", "run task", {'t', "task"});
     args::Flag server(group, "server", "run server", {'s', "server"});
     try
     {
@@ -72,6 +70,22 @@ int main(int argc, char* argv[]) {
         
         // test main
         program::foo();
+    }
+    if (task) {
+        tf::Executor executor;
+        tf::Taskflow taskflow("simple");
+
+        auto [A, B, C, D] = taskflow.emplace(
+            []() { std::cout << "TaskA\n"; },
+            []() { std::cout << "TaskB\n"; },
+            []() { std::cout << "TaskC\n"; },
+            []() { std::cout << "TaskD\n"; }
+        );
+
+        A.precede(B, C);  // A runs before B and C
+        D.succeed(B, C);  // D runs after  B and C
+
+        executor.run(taskflow).wait();
     }
     if (server) {
         cout << "Running webserver on port 8888" << endl;

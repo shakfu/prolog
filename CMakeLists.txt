@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(prolog LANGUAGES CXX)
+project(prolog
+	VERSION 0.0.1
+	LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -17,3 +19,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/include)
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/lib)
 
 add_subdirectory(src)
+
+configure_file ("${CMAKE_CURRENT_SOURCE_DIR}/config.toml"
+            	"${CMAKE_BINARY_DIR}/bin/config.toml" )
