@@ -25,9 +25,18 @@ The root `Makefile` is just for convenience.
 - [x] [sol2](https://github.com/ThePhD/sol2) for lua scripting (why not!!)
 - [x] [args](https://github.com/Taywee/args) library for command-line parsing.
 - [x] [cpp-terminal](https://github.com/jupyter-xeus/cpp-terminal) library
-- [x] [workflow](https://github.com/sogou/workflow) engine for microservices 
+- [x] [workflow](https://github.com/sogou/workflow) engine for microservices
 - [x] [taskflow](https://github.com/taskflow/taskflow) task programming system
+- [x] [webview](https://github.com/webview/webview) web viewing library
 - [ ] [tomlplusplus](https://github.com/marzer/tomlplusplus) for configuration
 - [ ] [indicators](https://github.com/p-ranav/indicators/) library
 - [ ] [libpqxx](https://github.com/jtv/libpqxx)
 - [ ] some algorithms from google [or-tools](https://developers.google.com/optimization).
+
+
+## Research
+
+- crossplatform development options:
+	- [flutter](https://flutter.dev) cross-platform framework by google (dart)
+	- 
+- 

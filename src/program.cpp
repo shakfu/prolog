@@ -6,6 +6,7 @@
 #include <workflow/WFHttpServer.h>
 #include <taskflow/taskflow.hpp>
 #include <toml.hpp>
+#include <webview.h>
 
 #include "core/process.hpp"
 #include "model/vehicle.hpp"
@@ -20,11 +21,14 @@ int main(int argc, char* argv[]) {
     std::string_view library_name = config["version"].value_or("0.0.0");
     cout << "Version: " << library_name << endl; 
 
+    // options
     args::ArgumentParser parser("This the prolog main program.", "This goes after the options.");
     args::Group group(parser, "This group is all exclusive:", args::Group::Validators::Xor);
     args::Flag demo(group, "demo", "run demo", {'d', "demo"});
     args::Flag task(group, "task", "run task", {'t', "task"});
     args::Flag server(group, "server", "run server", {'s', "server"});
+    args::Flag web(group, "web", "view web", {'w', "web"});
+
     try
     {
         parser.ParseCLI(argc, argv);
@@ -101,7 +105,13 @@ int main(int argc, char* argv[]) {
         }
 
     }
-
+    if (web) {
+        webview::webview w(true, nullptr);
+        w.set_title("prolog webview");
+        w.set_size(480, 320, WEBVIEW_HINT_NONE);
+        w.navigate("https://github.com/webview/webview");
+        w.run();
+    }
     return 0;
 
 }

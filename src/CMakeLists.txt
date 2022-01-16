@@ -47,6 +47,7 @@ target_link_libraries(prolog-exe
         workflow
         ssl
         crypto
+        "-framework WebKit"
 )
 
 # this works too

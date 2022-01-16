@@ -957,9 +957,9 @@ TOML_DISABLE_SUGGEST_ATTR_WARNINGS;
 #pragma warning(disable : 5031) // #pragma warning(pop): likely mismatch
 #elif TOML_CLANG
 #pragma clang diagnostic ignored "-Wheader-hygiene"
-#if TOML_CLANG >= 12
-#pragma clang diagnostic ignored "-Wc++20-extensions"
-#endif
+// #if TOML_CLANG >= 12
+// #pragma clang diagnostic ignored "-Wc++20-extensions"
+// #endif
 #if TOML_CLANG == 13
 #pragma clang diagnostic ignored "-Wreserved-identifier"
 #endif
