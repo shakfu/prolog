@@ -50,6 +50,10 @@ target_link_libraries(prolog-exe
         "-framework WebKit"
         spdlog
         zmq
+        pqxx
+        pgcommon
+        pgport
+        pq
 )
 
 # this works too

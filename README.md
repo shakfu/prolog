@@ -30,15 +30,15 @@ The root `Makefile` is just for convenience.
 - [x] [webview](https://github.com/webview/webview) web viewing library
 - [x] [tomlplusplus](https://github.com/marzer/tomlplusplus) for configuration
 - [x] [spdlog](https://github.com/gabime/spdlog) for logging
-- [x] [libzeromq](https://github.com/zeromq/libzmq) and [cppzmq]https://github.com/zeromq/cppzmq for messaging
+- [x] [libzeromq](https://github.com/zeromq/libzmq) and [cppzmq](https://github.com/zeromq/cppzmq) for messaging
 - [x] [doctest](https://github.com/doctest/doctest/blob/master/doc/markdown/tutorial.md) for testing
-- [ ] [cpr](https://github.com/libcpr/cpr) for http requests
-- [ ] [indicators](https://github.com/p-ranav/indicators/) library
-- [ ] [libpqxx](https://github.com/jtv/libpqxx)
+- [x] [libpqxx](https://github.com/jtv/libpqxx) for postgresql access
+- [x] [indicators](https://github.com/p-ranav/indicators/) library
 - [ ] some algorithms from google [or-tools](https://developers.google.com/optimization).
 - [ ] [drogon](https://github.com/drogonframework/drogon) for web application
 - [ ] [kore](https://github.com/jorisvink/kore) for web application
 - [ ] [imgui](https://github.com/ocornut/imgui) for admin gui
+- [ ] [cpr](https://github.com/libcpr/cpr) for http requests
 
 ## Research
 
