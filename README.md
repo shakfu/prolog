@@ -1,6 +1,6 @@
 # prolog
 
-A place to experiment with interesting open-source cpp-based operations research and logistics algorithms.
+A place to experiment with interesting open-source cpp-based software integrations, as well as operations research and logistics algorithms.
 
 
 ## Status
@@ -31,6 +31,7 @@ The root `Makefile` is just for convenience.
 - [x] [tomlplusplus](https://github.com/marzer/tomlplusplus) for configuration
 - [x] [spdlog](https://github.com/gabime/spdlog) for logging
 - [x] [libzeromq](https://github.com/zeromq/libzmq) and [cppzmq]https://github.com/zeromq/cppzmq for messaging
+- [x] [doctest](https://github.com/doctest/doctest/blob/master/doc/markdown/tutorial.md) for testing
 - [ ] [cpr](https://github.com/libcpr/cpr) for http requests
 - [ ] [indicators](https://github.com/p-ranav/indicators/) library
 - [ ] [libpqxx](https://github.com/jtv/libpqxx)
