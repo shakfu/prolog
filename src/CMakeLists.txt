@@ -21,43 +21,56 @@ add_executable(prolog-exe program.cpp)
 set_target_properties(prolog-exe PROPERTIES 
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
-# target_include_directories(prolog-exe
-#     PRIVATE
-#         /usr/local/opt/openssl@1.1/include
-# )
-
-# target_link_directories(prolog-exe
-#     PRIVATE
-#         /usr/local/opt/openssl@1.1/lib
-# )
-
 target_link_libraries(prolog-exe
     PRIVATE
         core
         model
         db
+
     PUBLIC
+    # sqlite3
         SQLiteCpp
         sqlite3
+
+    # sol2
         pthread
         dl
         lua
         m
+
+    # cpp-terminal
         cpp-terminal
+
+    # workflow
         workflow
         ssl
         crypto
+
+    # webview
         "-framework WebKit"
+
+    # spdlog
         spdlog
+
+    # zmq
         zmq
+
+    # pqxx
         pqxx
         pgcommon
         pgport
         pq
-)
 
-# this works too
-# target_link_libraries(prolog-exe PRIVATE prolog-lib)
+    # cpr
+        cpr
+        curl-d
+        z
+        ssh2
+        "-framework CoreFoundation"
+        "-framework Security"
+        "-framework SystemConfiguration"
+
+)
 
 
 # rename the cmake name of the exec to the project name
@@ -74,9 +87,6 @@ target_link_libraries(prolog
     core
     model
 )
-
-# this works too
-# target_link_libraries(prolog PRIVATE prolog-lib)
 
 set_target_properties(prolog PROPERTIES 
    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
@@ -96,8 +106,6 @@ target_link_libraries(lua_prolog
     m
 )
 
-# this works too
-# target_link_libraries(prolog PRIVATE prolog-lib)
 
 set_target_properties(lua_prolog PROPERTIES 
    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
@@ -107,6 +115,4 @@ set_target_properties(lua_prolog PROPERTIES
 
 set_target_properties(lua_prolog PROPERTIES
     PREFIX "")
-
-# set_target_properties(lua_prolog PROPERTIES OUTPUT_NAME prolog)
 

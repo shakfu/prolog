@@ -13,7 +13,7 @@
 #include <zmq.hpp>
 #include <pqxx/pqxx>
 #include <indicators/indicators.hpp>
-
+#include <cpr/cpr.h>
 
 #include "core/process.hpp"
 #include "db/store.hpp"
@@ -48,6 +48,7 @@ int main(int argc, char *argv[])
     args::Flag msg(group, "msg", "run messaging demo", {'m', "msg"});
     args::Flag pg(group, "pg", "run postgres demo", {'p', "pg"});
     args::Flag bar(group, "bar", "run bar demo", {'b', "bar"});
+    args::Flag request(group, "request", "run cpr demo", {'r', "reques"});
 
     try
     {
@@ -152,7 +153,7 @@ int main(int argc, char *argv[])
         // Connect to the database.
         pqxx::connection c{"postgresql://sa@localhost/sa"};
         std::cout << "Connected to " << c.dbname() << '\n';
-    }
+    }    
     if (bar)
     {
         spdlog::info("Welcome to prolog::bar");
@@ -178,6 +179,13 @@ int main(int argc, char *argv[])
                 break;
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
+    }
+    if (request)
+    {
+        spdlog::info("Welcome to prolog::request");
+        cpr::Response r = cpr::Get(cpr::Url{"https://python.org"});
+        spdlog::info("status code: ", r.status_code);
+        cout << r.text << endl;    
     }
     return 0;
 }

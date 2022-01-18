@@ -19,6 +19,9 @@ The root `Makefile` is just for convenience.
 
 ## TODO
 
+
+- [ ] convert exe code to tests (per entry below)
+
 - [x] [cmake](https://cmake.org) as primary build system
 - [x] [pybindl11](https://github.com/pybind/pybind11) for python scripting
 - [x] [sqlite3](https://github.com/sqlite/sqlite) for persistence via [SQLiteCpp](https://github.com/SRombauts/SQLiteCpp)
@@ -34,11 +37,15 @@ The root `Makefile` is just for convenience.
 - [x] [doctest](https://github.com/doctest/doctest/blob/master/doc/markdown/tutorial.md) for testing
 - [x] [libpqxx](https://github.com/jtv/libpqxx) for postgresql access
 - [x] [indicators](https://github.com/p-ranav/indicators/) library
+- [x] [cpr](https://github.com/libcpr/cpr) for http requests
 - [ ] some algorithms from google [or-tools](https://developers.google.com/optimization).
 - [ ] [drogon](https://github.com/drogonframework/drogon) for web application
 - [ ] [kore](https://github.com/jorisvink/kore) for web application
 - [ ] [imgui](https://github.com/ocornut/imgui) for admin gui
-- [ ] [cpr](https://github.com/libcpr/cpr) for http requests
+
+## Pending
+
+- a decent ORM?
 
 ## Research
 
