@@ -70,6 +70,9 @@ target_link_libraries(prolog-exe
         "-framework Security"
         "-framework SystemConfiguration"
 
+    # libxlsxwriter (requires z)
+        xlsxwriter
+
 )
 
 
