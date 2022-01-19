@@ -1,8 +1,16 @@
 
-# see: https://lesleylai.info/en/unit-test-with-cmake/
+enable_testing()
 
-add_executable(test_suite test_basic.cpp)
-target_link_libraries(test_suite
+set(test_suite 
+    test_main.cpp
+    test_basic.cpp
+    test_model.cpp
+)
+
+add_executable(test_prolog ${test_suite})
+
+target_link_libraries(test_prolog
+    model
 	# Doctest
     SQLiteCpp
     sqlite3
@@ -10,10 +18,10 @@ target_link_libraries(test_suite
     dl
     m
 )
-add_test(NAME test_basic
-         COMMAND test_suite)
 
-set_target_properties(test_suite PROPERTIES 
+add_test(NAME test_prolog
+         COMMAND test_prolog)
+
+
+set_target_properties(test_prolog PROPERTIES 
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-
-enable_testing()

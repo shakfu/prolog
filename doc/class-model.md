@@ -2,7 +2,7 @@
 # prolog class model
 
 
-packages:
+## packages:
 
 - core
 - model

@@ -17,8 +17,15 @@ To build just run `make` in the project root. This calls the `scripts/build.sh` 
 The root `Makefile` is just for convenience.
 
 
-## TODO
+## Code Style
 
+Try to mostly apply principles of 
+
+- [google c++ style guide](https://google.github.io/styleguide/cppguide.html#Names_and_Order_of_Includes)
+
+
+
+## TODO
 
 - [ ] convert exe code to tests (per entry below)
 
@@ -43,11 +50,12 @@ The root `Makefile` is just for convenience.
 - [ ] [kore](https://github.com/jorisvink/kore) for web application
 - [ ] [imgui](https://github.com/ocornut/imgui) for admin gui
 
-## Pending
+
+### Pending
 
 - a decent ORM?
 
-## Research
+### Research
 
 - crossplatform development options:
 	- [flutter](https://flutter.dev) cross-platform framework by google (dart)

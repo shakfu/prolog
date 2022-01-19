@@ -1,5 +1,5 @@
-#ifndef INCLUDE_PROGRAM_H
-#define INCLUDE_PROGRAM_H
+#ifndef PROLOG_PROGRAM_H
+#define PROLOG_PROGRAM_H
 
 #include <cstdio>
 
@@ -9,7 +9,8 @@ namespace program
     {
         printf("program::foo()\n");
     }
-}
 
-#endif
+} // namespace program
+
+#endif // PROLOG_PROGRAM_H
 

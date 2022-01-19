@@ -1,5 +1,5 @@
-#ifndef INCLUDE_CORE_PROCESS_H
-#define INCLUDE_CORE_PROCESS_H
+#ifndef PROLOG_CORE_PROCESS_H
+#define PROLOG_CORE_PROCESS_H
 
 #include <string>
 
@@ -15,6 +15,6 @@ class Process {
         void report(model::Vehicle v);
 };
 
-}
+} // namespace core
 
-#endif
+#endif // PROLOG_CORE_PROCESS_H

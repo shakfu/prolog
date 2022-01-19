@@ -1,5 +1,5 @@
-#ifndef INCLUDE_DB_STORE_H
-#define INCLUDE_DB_STORE_H
+#ifndef PROLOG_DB_STORE_H
+#define PROLOG_DB_STORE_H
 
 
 namespace db {
@@ -10,6 +10,6 @@ class Store {
         void demo();
 };
 
-}
+} // namespace db
 
-#endif
+#endif // PROLOG_DB_STORE_H

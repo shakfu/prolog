@@ -1,5 +1,5 @@
-#ifndef INCLUDE_MODEL_VEHICLE_H
-#define INCLUDE_MODEL_VEHICLE_H
+#ifndef PROLOG_MODEL_VEHICLE_H
+#define PROLOG_MODEL_VEHICLE_H
 
 #include <string>
 using namespace std;
@@ -18,6 +18,6 @@ class Vehicle {
         string to_string();
 };
 
-}
+} // namespace model
 
-#endif
+#endif // PROLOG_MODEL_VEHICLE_H

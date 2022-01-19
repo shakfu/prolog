@@ -1,19 +1,19 @@
+#include <chrono>
 #include <iostream>
 #include <thread>
-#include <chrono>
 
-#include "spdlog/spdlog.h"
-#include "webview.h"
 #include <args.hxx>
 #include <cpp-terminal/base.hpp>
+#include <cpr/cpr.h>
+#include <indicators/indicators.hpp>
+#include <pqxx/pqxx>
 #include <sol/sol.hpp>
+#include <spdlog/spdlog.h>
 #include <taskflow/taskflow.hpp>
 #include <toml.hpp>
+#include <webview.h>
 #include <workflow/WFHttpServer.h>
 #include <zmq.hpp>
-#include <pqxx/pqxx>
-#include <indicators/indicators.hpp>
-#include <cpr/cpr.h>
 
 #include "core/process.hpp"
 #include "db/store.hpp"
@@ -47,8 +47,8 @@ int main(int argc, char *argv[])
     args::Flag web(group, "web", "view web", {'w', "web"});
     args::Flag msg(group, "msg", "run messaging demo", {'m', "msg"});
     args::Flag pg(group, "pg", "run postgres demo", {'p', "pg"});
-    args::Flag bar(group, "bar", "run bar demo", {'b', "bar"});
-    args::Flag request(group, "request", "run cpr demo", {'r', "reques"});
+    args::Flag bar(group, "bar", "run indicators demo", {'b', "bar"});
+    args::Flag request(group, "request", "run cpr demo", {'r', "request"});
 
     try
     {
@@ -62,7 +62,6 @@ int main(int argc, char *argv[])
     catch (args::ParseError e)
     {
         spdlog::error("args::ParseError", e.what());
-        // std::cerr << e.what() << std::endl;
         std::cerr << parser;
         return 1;
     }
