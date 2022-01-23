@@ -12,7 +12,7 @@
 #include <taskflow/taskflow.hpp>
 #include <toml.hpp>
 #include <webview.h>
-#include <workflow/WFHttpServer.h>
+// #include <workflow/WFHttpServer.h>
 #include <xlsxwriter.h>
 #include <zmq.hpp>
 
@@ -26,26 +26,22 @@
 
 int main(int argc, char *argv[])
 {
-    // configuration
-    try
-    {
-        auto config = toml::parse_file("config.toml");
-        std::string_view library_name = config["version"].value_or("0.0.0");
-        cout << "Version: " << library_name << endl;
-    }
-    catch (toml::parse_error &e)
-    {
-        spdlog::error("toml::parse_file 'config.toml'", e.what());
-    }
 
-    // options
+    // general options
     args::ArgumentParser parser("This the prolog main program.",
                                 "This goes after the options.");
+    args::HelpFlag help(parser, "help", "Display this help menu", {'h', "help"});
+    args::CompletionFlag completion(parser, {"complete"});
+
+    // optional file-based configuration (.toml)
+    args::ValueFlag<std::string> config(parser, "config", "path to config file", {'c', "config"});
+
+    // app options
     args::Group group(
         parser, "This group is all exclusive:", args::Group::Validators::Xor);
     args::Flag demo(group, "demo", "run demo", {'d', "demo"});
     args::Flag task(group, "task", "run task", {'t', "task"});
-    args::Flag server(group, "server", "run server", {'s', "server"});
+    // args::Flag server(group, "server", "run server", {'s', "server"});
     args::Flag web(group, "web", "view web", {'w', "web"});
     args::Flag msg(group, "msg", "run messaging demo", {'m', "msg"});
     args::Flag pg(group, "pg", "run postgres demo", {'p', "pg"});
@@ -57,12 +53,17 @@ int main(int argc, char *argv[])
     {
         parser.ParseCLI(argc, argv);
     }
-    catch (args::Help)
+    catch (const args::Completion& e)
+    {
+        std::cout << e.what();
+        return 0;
+    }    
+    catch (const args::Help&)
     {
         std::cout << parser;
         return 0;
     }
-    catch (args::ParseError e)
+    catch (const args::ParseError& e)
     {
         spdlog::error("args::ParseError", e.what());
         std::cerr << parser;
@@ -70,10 +71,27 @@ int main(int argc, char *argv[])
     }
     catch (args::ValidationError e)
     {
-        std::cerr << e.what() << std::endl;
+        // std::cerr << e.what() << std::endl;
         std::cerr << parser;
         return 1;
     }
+
+    if (config)
+    {
+        spdlog::info("loading confile file");
+        try
+        {
+            auto cfg = toml::parse_file(args::get(config));
+            std::string_view library_name = cfg["version"].value_or("0.0.0");
+            cout << "Version: " << library_name << endl;
+        }
+        catch (toml::parse_error &e)
+        {
+            spdlog::error("toml::parse_file 'config.toml'", e.what());
+        }
+
+    }
+
     if (demo)
     {
         spdlog::info("Welcome to prolog::demo");
@@ -114,24 +132,24 @@ int main(int argc, char *argv[])
 
         executor.run(taskflow).wait();
     }
-    if (server)
-    {
-        spdlog::info("Welcome to prolog::server");
-        cout << "Running webserver on port 8888" << endl;
-        cout << "Press [Enter] to stop." << endl;
+    // if (server)
+    // {
+    //     spdlog::info("Welcome to prolog::server");
+    //     cout << "Running webserver on port 8888" << endl;
+    //     cout << "Press [Enter] to stop." << endl;
 
-        WFHttpServer server(
-            [](WFHttpTask *task) {
-                task->get_resp()->append_output_body(
-                    "<html>Hello World!</html>");
-            });
+    //     WFHttpServer server(
+    //         [](WFHttpTask *task) {
+    //             task->get_resp()->append_output_body(
+    //                 "<html>Hello World!</html>");
+    //         });
 
-        if (server.start(8888) == 0)
-        {              // start server on port 8888
-            getchar(); // press "Enter" to end.
-            server.stop();
-        }
-    }
+    //     if (server.start(8888) == 0)
+    //     {              // start server on port 8888
+    //         getchar(); // press "Enter" to end.
+    //         server.stop();
+    //     }
+    // }
     if (web)
     {
         spdlog::info("Welcome to prolog::web");

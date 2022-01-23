@@ -42,7 +42,7 @@ target_link_libraries(prolog-exe
         cpp-terminal
 
     # workflow
-        workflow
+        # workflow
         ssl
         crypto
 
