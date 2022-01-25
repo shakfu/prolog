@@ -5,6 +5,7 @@ set(test_suite
     test_main.cpp
     test_basic.cpp
     test_model.cpp
+    test_date.cpp
 )
 
 add_executable(test_prolog ${test_suite})

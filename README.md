@@ -46,10 +46,12 @@ Try to mostly apply principles of
 - [x] [indicators](https://github.com/p-ranav/indicators/) library
 - [x] [cpr](https://github.com/libcpr/cpr) for http requests
 - [x] [libxlsxwriter](https://github.com/jmcnamara/libxlsxwriter) for generating xlsx files
+- [x] [date](https://github.com/HowardHinnant/date) for c++ date classes
 - [ ] some algorithms from google [or-tools](https://developers.google.com/optimization).
 - [ ] [drogon](https://github.com/drogonframework/drogon) for web application
 - [ ] [kore](https://github.com/jorisvink/kore) for web application
 - [ ] [imgui](https://github.com/ocornut/imgui) for admin gui
+
 
 
 ### Pending
